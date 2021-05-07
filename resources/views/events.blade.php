@@ -13,8 +13,8 @@
             cluster: 'eu'
         });
 
-        var channel = pusher.subscribe('public-comment-channel');
-        channel.bind('my-event', function(data) {
+        var channel = pusher.subscribe('private-reply-channel'.Reply);
+        channel.bind('private-event-pusher', function(data) {
             alert(JSON.stringify(data));
         });
     </script>

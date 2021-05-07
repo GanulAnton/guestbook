@@ -40,6 +40,8 @@ Route::get('/comments/{id}/replies',[ReplyController::class, 'index']);
 
 
 
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

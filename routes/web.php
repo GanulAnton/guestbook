@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/events', function (){
     return view('events');
 });
+Route::get('/test', function (){
+    event(new \App\Events\CreateNewComment('hello'));
+    return 'new event';
+});

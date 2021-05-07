@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Events\CreateNewReply;
-use App\Http\Resources\CommentResource;
-use App\Http\Resources\ReplyResource;
-use App\Models\Comment;
 use App\Models\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 class ReplyController extends Controller
 {
@@ -44,7 +40,7 @@ class ReplyController extends Controller
             $created_reply->text = $validated['text'];
             $created_reply->comment_id = $id;
             $created_reply->save();
-            event(new CreateNewReply($request->text));
+            event(new CreateNewReply($created_reply));
             return response($created_reply);
 
     }

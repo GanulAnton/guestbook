@@ -18,7 +18,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments_list = Comment::with(['users','replies'])->paginate(10);
+        $comments_list = Comment::with(['user','replies'])->paginate(10);
         return CommentResource::collection($comments_list,200);
 
 
@@ -41,8 +41,9 @@ class CommentController extends Controller
         $created_comment -> description = $validated['description'];
         $created_comment -> text = $validated['text'];
         $created_comment -> save();
-        event(new CreateNewComment($request->text));
+        event(new CreateNewComment($created_comment));
         return response($created_comment);
+
     }
 
     /**
@@ -66,7 +67,7 @@ class CommentController extends Controller
     public function update(Request $request, $id)
     {
         $comment = Comment::find($id);
-        $comment -> upadte($request->all());
+        $comment -> update($request->all());
         return $comment;
     }
 

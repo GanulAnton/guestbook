@@ -3,9 +3,7 @@
 namespace App\Events;
 
 use App\Models\Reply;
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -38,6 +36,10 @@ class CreateNewReply implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('reply.'.$this->reply->id);
+        return new PrivateChannel('private-reply-channel');
+    }
+    public function broadcastAs()
+    {
+        return 'private-event-pusher';
     }
 }

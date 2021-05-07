@@ -2,11 +2,8 @@
 
 namespace App\Events;
 
-use App\Models\Comment;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -20,6 +17,7 @@ class CreateNewComment implements ShouldBroadcast
      *
      * @var \App\Models\Comment
      */
+
         public $comment;
 
     /**
@@ -40,5 +38,9 @@ class CreateNewComment implements ShouldBroadcast
     public function broadcastOn()
     {
         return new Channel('public-comment-channel');
+    }
+    public function broadcastAs()
+    {
+        return 'event-pusher';
     }
 }
